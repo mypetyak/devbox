@@ -5,6 +5,8 @@ RUN apt-get update
 RUN apt-get install -y \
     build-essential \
     curl \
+    debhelper \
+    dh-python \
     gcc \
     git \
     libevent-dev \
@@ -15,6 +17,7 @@ RUN apt-get install -y \
     net-tools \
     netcat \
     python \
+    python-setuptools \
     tar \
     tcpdump \
     vim \
@@ -43,8 +46,8 @@ RUN curl https://raw.githubusercontent.com/mypetyak/dotfiles/master/.vimrc -o /r
 RUN git clone https://github.com/gmarik/Vundle.vim.git /root/.vim/bundle/Vundle.vim
 RUN vim +PluginInstall +qall
 
-RUN curl -O http://ftp3.nrc.ca/debian/pool/main/t/tmux/tmux_2.2.orig.tar.gz && tar -xvf tmux_2.2.orig.tar.gz && cd tmux-2.2 && ./configure && make && make install
+#RUN curl -O http://ftp3.nrc.ca/debian/pool/main/t/tmux/tmux_2.2.orig.tar.gz && tar -xvf tmux_2.2.orig.tar.gz && cd tmux-2.2 && ./configure && make && make install
 
-RUN curl https://raw.githubusercontent.com/mypetyak/dotfiles/master/.tmux.conf -o /root/.tmux.conf
+#RUN curl https://raw.githubusercontent.com/mypetyak/dotfiles/master/.tmux.conf -o /root/.tmux.conf
 
-ENTRYPOINT /bin/zsh
+ENTRYPOINT /bin/bash
