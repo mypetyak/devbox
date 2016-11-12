@@ -1,14 +1,18 @@
 FROM debian:jessie
 MAINTAINER Christopher Bunn <bunn@uber.com>
 
+RUN ls
 RUN apt-get update
 RUN apt-get install -y \
     build-essential \
     curl \
     debhelper \
+    dh-exec \
+    dh-systemd \
     dh-python \
     gcc \
     git \
+    golang \
     libevent-dev \
     locales \
     make \
