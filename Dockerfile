@@ -56,4 +56,4 @@ RUN GOPATH=/gocode /usr/local/go/bin/go get -u -f github.com/yarpc/yab
 # set vi mode
 RUN echo "set -o vi" >> /etc/profile
 
-ENTRYPOINT /bin/bash
+ENTRYPOINT /bin/bash --login
