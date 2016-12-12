@@ -40,8 +40,8 @@ RUN rm get-pip.py
 RUN wget https://storage.googleapis.com/golang/go1.7.3.linux-amd64.tar.gz
 RUN tar -C /usr/local -xzf go1.7.3.linux-amd64.tar.gz
 RUN rm go1.7.3.linux-amd64.tar.gz
-RUN echo "export GOPATH=\"/gocode\"" >> /etc/profile
-RUN echo "export PATH=$PATH:/usr/local/go/bin:gocode/bin" >> /etc/profile
+RUN echo "export GOPATH=\"/gocode\"" >> /etc/bash.bashrc
+RUN echo "export PATH=$PATH:/usr/local/go/bin:gocode/bin" >> /etc/bash.bashrc
 
 # install vim dotfile
 RUN curl https://raw.githubusercontent.com/mypetyak/dotfiles/master/.vimrc -o /root/.vimrc
@@ -53,7 +53,10 @@ RUN vim +PluginInstall +qall
 # install yab
 RUN GOPATH=/gocode /usr/local/go/bin/go get -u -f github.com/yarpc/yab
 
-# set vi mode
-RUN echo "set -o vi" >> /etc/profile
+# install tmux doftile
+RUN wget -O /etc/tmux.conf https://raw.githubusercontent.com/mypetyak/dotfiles/master/.tmux.conf
 
-ENTRYPOINT /bin/bash --login
+# set vi mode
+RUN echo "set -o vi" >> /etc/bash.bashrc
+
+ENTRYPOINT /usr/bin/tmux
