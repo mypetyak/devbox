@@ -8,17 +8,23 @@ RUN apt-get update && apt-get install -y \
     dh-exec \
     dh-systemd \
     dh-python \
+    dstat \
     gcc \
     git \
+    ifstat \
     libevent-dev \
+    linux-tools \
     locales \
     make \
     man-db \
+    moreutils \
     ncurses-dev \
     net-tools \
     netcat \
     python \
     python-setuptools \
+    strace \
+    sudo \
     tar \
     tmux \
     tcpdump \
