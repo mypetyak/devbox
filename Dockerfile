@@ -25,6 +25,7 @@ RUN apt-get update && apt-get install -y \
     python-setuptools \
     strace \
     sudo \
+    sysstat \
     tar \
     tmux \
     tcpdump \
