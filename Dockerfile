@@ -12,9 +12,11 @@ RUN apt-get update && apt-get install -y \
     gcc \
     git \
     ifstat \
+    iotop \
     libevent-dev \
     linux-tools \
     locales \
+    lsof \
     make \
     man-db \
     moreutils \
@@ -49,6 +51,10 @@ RUN tar -C /usr/local -xzf go1.7.3.linux-amd64.tar.gz
 RUN rm go1.7.3.linux-amd64.tar.gz
 RUN echo "export GOPATH=\"/gocode\"" >> /etc/bash.bashrc
 RUN echo "export PATH=$PATH:/usr/local/go/bin:gocode/bin" >> /etc/bash.bashrc
+
+# install bash dotfiles
+RUN curl https://raw.githubusercontent.com/mypetyak/dotfiles/master/.bashrc -o /root/.bashrc
+RUN curl https://raw.githubusercontent.com/mypetyak/dotfiles/master/.bash_profile -o /root/.bash_profile
 
 # install vim dotfile
 RUN curl https://raw.githubusercontent.com/mypetyak/dotfiles/master/.vimrc -o /root/.vimrc
