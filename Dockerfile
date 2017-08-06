@@ -2,6 +2,8 @@ FROM debian:jessie
 MAINTAINER Christopher Bunn
 
 RUN apt-get update && apt-get install -y \
+    autoconf \
+    automake \
     build-essential \
     curl \
     debhelper \
@@ -15,6 +17,7 @@ RUN apt-get update && apt-get install -y \
     ifstat \
     iotop \
     libevent-dev \
+    libtool \
     linux-tools \
     locales \
     lsof \
@@ -24,6 +27,7 @@ RUN apt-get update && apt-get install -y \
     ncurses-dev \
     net-tools \
     netcat \
+    pkg-config \
     python \
     python-setuptools \
     strace \
@@ -54,21 +58,18 @@ RUN echo "export GOPATH=\"/gocode\"" >> /etc/bash.bashrc
 RUN echo "export PATH=$PATH:/usr/local/go/bin:gocode/bin" >> /etc/bash.bashrc
 
 # install bash dotfiles
-RUN curl https://raw.githubusercontent.com/mypetyak/dotfiles/master/.bashrc -o /root/.bashrc
-RUN curl https://raw.githubusercontent.com/mypetyak/dotfiles/master/.bash_profile -o /root/.bash_profile
+RUN curl https://raw.githubusercontent.com/mypetyak/dotfiles/bunn/devbox/.bashrc -o /root/.bashrc
+RUN curl https://raw.githubusercontent.com/mypetyak/dotfiles/bunn/devbox/.bash_profile -o /root/.bash_profile
 
 # install vim dotfile
-RUN curl https://raw.githubusercontent.com/mypetyak/dotfiles/master/.vimrc -o /root/.vimrc
+RUN curl https://raw.githubusercontent.com/mypetyak/dotfiles/bunn/devbox/.vimrc -o /root/.vimrc
 
 # install vim plugins
 RUN git clone https://github.com/gmarik/Vundle.vim.git /root/.vim/bundle/Vundle.vim
 RUN vim +PluginInstall +qall
 
-# install yab
-RUN GOPATH=/gocode /usr/local/go/bin/go get -u -f github.com/yarpc/yab
-
 # install tmux doftile
-RUN wget -O /etc/tmux.conf https://raw.githubusercontent.com/mypetyak/dotfiles/master/.tmux.conf
+RUN wget -O /etc/tmux.conf https://raw.githubusercontent.com/mypetyak/dotfiles/bunn/devbox/.tmux.conf
 
 # set vi mode
 RUN echo "set -o vi" >> /etc/bash.bashrc
