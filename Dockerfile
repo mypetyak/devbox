@@ -28,6 +28,7 @@ RUN apt-get update && apt-get install -y \
     ncurses-dev \
     net-tools \
     netcat \
+    ngrep \
     pkg-config \
     python \
     python-setuptools \
@@ -41,8 +42,7 @@ RUN apt-get update && apt-get install -y \
     tcpdump \
     unzip \
     vim \
-    wget \
-    zsh
+    wget
 
 # Set locale info for tmux's (and others) benefit
 RUN echo 'en_US UTF-8' > /etc/locale.gen
@@ -53,10 +53,10 @@ RUN wget https://bootstrap.pypa.io/get-pip.py
 RUN python get-pip.py
 RUN rm get-pip.py
 
-# install golang 1.8.3
-RUN wget https://storage.googleapis.com/golang/go1.8.3.linux-amd64.tar.gz
-RUN tar -C /usr/local -xzf go1.8.3.linux-amd64.tar.gz
-RUN rm go1.8.3.linux-amd64.tar.gz
+# install golang
+RUN wget https://storage.googleapis.com/golang/go1.9.2.linux-amd64.tar.gz
+RUN tar -C /usr/local -xzf go1.9.2.linux-amd64.tar.gz
+RUN rm go1.9.2.linux-amd64.tar.gz
 RUN echo "export GOPATH=\"/gocode\"" >> /etc/bash.bashrc
 RUN echo "export PATH=$PATH:/usr/local/go/bin:gocode/bin" >> /etc/bash.bashrc
 
